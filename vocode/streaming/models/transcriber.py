@@ -26,6 +26,7 @@ class TranscriberType(str, Enum):
     GOOGLE = "transcriber_google"
     ASSEMBLY_AI = "transcriber_assembly_ai"
     WHISPER_CPP = "transcriber_whisper_cpp"
+    WHISPER = "transcriber_whisper"
     REV_AI = "transcriber_rev_ai"
     AZURE = "transcriber_azure"
     GLADIA = "transcriber_gladia"
@@ -156,6 +157,11 @@ class WhisperCPPTranscriberConfig(
     libname: str
     fname_model: str
 
+class WhisperTranscriberConfig(
+    TranscriberConfig, type=TranscriberType.WHISPER.value  # type: ignore
+):
+    language: Optional[str] = "it"
+    model: Optional[str] = "medium"
 
 class RevAITranscriberConfig(TranscriberConfig, type=TranscriberType.REV_AI.value):  # type: ignore
     pass
